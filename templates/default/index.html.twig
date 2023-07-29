@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>Liste des utilisateurs</h1>
+    <div class="d-flex justify-content-between">
+        {% for user in users %}
+            <div class="card" style="width: 18rem;">
+                <img src="{{ asset(user.image) }}" class="card-img-top">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Mail : {{ user.email }}</li>
+                    <li class="list-group-item">Nom : {{ user.lastname }}</li>
+                    <li class="list-group-item">Prénom : {{ user.firstname }}</li>
+                    <li class="list-group-item">Secteur : {{ user.secteur }}</li>
+                    <li class="list-group-item">Contrat : {{ user.contrat }}</li>
+                    {% if user.sortie is not null %}
+                        <li class="list-group-item">Sortie : {{ user.sortie|date('d-m-Y') }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+    </div>
+{% endblock %}

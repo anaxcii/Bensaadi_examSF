@@ -1,0 +1,15 @@
+<div class="d-flex justify-content-between p-4 border-bottom border-danger">
+    <p class="h2 col-4 text-danger">HumanBooster</p>
+
+    <div class="col d-flex justify-content-evenly ">
+
+        {% if app.user %}
+            {% if app.user.hasRole('ROLE_RH') %}
+                <a class="nav-btn text-danger" href="{{ path("app_user_index") }}">Gestion</a>
+                <a class="nav-btn text-danger" href="{{ path("app_default") }}">Liste des utilisateurs </a>
+            {% endif %}
+            <a class="nav-btn text-danger" href="{{ path("app_logout") }}">Logout</a>
+        {% endif %}
+
+    </div>
+</div>

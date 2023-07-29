@@ -24,6 +24,7 @@ class UserFixtures extends Fixture
         $testUser->setPassword($encodedPassword);
         $testUser->setRoles(["ROLE_USER"]);
 
+
         $testRH = new User();
         $testRH->setLastname("rh");
         $testRH->setFirstname("rh");

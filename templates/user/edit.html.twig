@@ -3,11 +3,12 @@
 {% block title %}{{ user.name }}{% endblock %}
 
 {% block body %}
-    <h1>Modification {{ block("title") }}</h1>
+<div class="d-flex justify-content-between">
+    <h3>Modification {{ block("title") }}</h3>
+    <a href="{{ path('app_user_index') }}" class="btn">Retour</a>
+</div>
+    <div class="container">
+    {{ include('user/_form.html.twig', {'button_label': 'Modifier'}) }}
+    </div>
 
-    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_user_index') }}">back to list</a>
-
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}

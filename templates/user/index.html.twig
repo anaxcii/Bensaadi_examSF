@@ -1,41 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block body %}
-<h1>Gestion des utilisateurs</h1>
-<div class="d-flex justify-content-between">
-    {% for user in users %}
-        <div class="card" style="width: 18rem;">
-            <img src="{{ asset(user.image) }}" class="card-img-top">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Mail : {{ user.email }}</li>
-                <li class="list-group-item">Rôle : {{ user.roles ? user.roles|json_encode : '' }}</li>
-                <li class="list-group-item">Mot de passe : {{ user.password }}</li>
-                <li class="list-group-item">Nom : {{ user.lastname }}</li>
-                <li class="list-group-item">Prénom : {{ user.firstname }}</li>
-                <li class="list-group-item">Secteur : {{ user.secteur }}</li>
-                <li class="list-group-item">Contrat : {{ user.contrat }}</li>
-                {% if user.sortie is not null %}
-                <li class="list-group-item">Sortie : {{ user.sortie|date('d-m-Y') }}</li>
-                {% endif %}
-            </ul>
-            <div class="card-body">
-                <a href="{{ path('app_user_show', {'id': user.id}) }}" class="card-link">Voir</a>
-                <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="card-link">Modifier</a>
-            </div>
+    <h3>Gestion des utilisateurs</h3>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for user in users %}
+                <div class="col mb-4">
+                    <div class="card h-100" style="width: 20rem;">
+                        {% if user.image is not null %}
+                            <img src="{{ asset(user.image) }}" class="card-img-top">
+                        {% else %}
+                            <img src="uploads/user/no-image-icon-23494-64c5643697bfb0.77368660.png" class="card-img-top">
+                        {% endif %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Mail : {{ user.email }}</li>
+                            <li class="list-group-item">Rôle : {{ user.roles ? user.roles|json_encode : '' }}</li>
+                            <li class="list-group-item">Mot de passe : {{ user.password }}</li>
+                            <li class="list-group-item">Nom : {{ user.lastname }}</li>
+                            <li class="list-group-item">Prénom : {{ user.firstname }}</li>
+                            <li class="list-group-item">Secteur : {{ user.secteur }}</li>
+                            <li class="list-group-item">Contrat : {{ user.contrat }}</li>
+                            {% if user.sortie is not null %}
+                                <li class="list-group-item">Sortie : {{ user.sortie|date('d-m-Y') }}</li>
+                            {% endif %}
+                        </ul>
+                        <div class="card-body">
+                            <a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn">Voir</a>
+                            <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn">Modifier</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
         </div>
+    </div>
 
-    {% else %}
-        <tr>
-            <td colspan="11">no records found</td>
-        </tr>
-    {% endfor %}
-</div>
-
-
-
-
-
-    <p><a href="{{ path('app_user_new') }}">Create new</a></p>
+    <div class="d-flex justify-content-center">
+        <a href="{{ path('app_user_new') }}" class="btn btn-dark">Créer</a>
+    </div>
 {% endblock %}

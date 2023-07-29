@@ -24,6 +24,9 @@ services:
         arguments:
             $userDirectory: '%user_directory%'
 
+    App\Command\DeleteAccountCommand:
+        tags: [ 'console.command' ]
+
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

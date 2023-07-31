@@ -19,19 +19,22 @@ class UserFixtures extends Fixture
         $testUser = new User();
         $testUser->setLastname("user");
         $testUser->setFirstname("user");
-        $testUser->setEmail("user@humanbooster.fr");
+        $testUser->setEmail("user@humanbooster.com");
         $encodedPassword = $this->hasheur->hashPassword($testUser,"user");
         $testUser->setPassword($encodedPassword);
         $testUser->setRoles(["ROLE_USER"]);
-
+        $testUser->setContrat("Aucun");
+        $testUser->setSecteur("Aucun");
 
         $testRH = new User();
         $testRH->setLastname("rh");
         $testRH->setFirstname("rh");
-        $testRH->setEmail("rh@humanbooster.fr");
-        $encodedPassword = $this->hasheur->hashPassword($testRH,"rh123");
+        $testRH->setEmail("rh@humanbooster.com");
+        $encodedPassword = $this->hasheur->hashPassword($testRH,"rh123@");
         $testRH->setPassword($encodedPassword);
         $testRH->setRoles(["ROLE_RH"]);
+        $testUser->setContrat("CDI");
+        $testUser->setSecteur("RH");
 
         $manager->persist($testUser);
         $manager->persist($testRH);

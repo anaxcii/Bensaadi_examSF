@@ -33,8 +33,8 @@ class UserFixtures extends Fixture
         $encodedPassword = $this->hasheur->hashPassword($testRH,"rh123@");
         $testRH->setPassword($encodedPassword);
         $testRH->setRoles(["ROLE_RH"]);
-        $testUser->setContrat("CDI");
-        $testUser->setSecteur("RH");
+        $testRH->setContrat("CDI");
+        $testRH->setSecteur("RH");
 
         $manager->persist($testUser);
         $manager->persist($testRH);
